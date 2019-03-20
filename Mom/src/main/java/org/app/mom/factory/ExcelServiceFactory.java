@@ -36,8 +36,7 @@ public class ExcelServiceFactory {
 		if (factoryInstance == null) {
 			factoryInstance = new ExcelServiceFactory();
 		}
-		ExcelQueue queue = ExcelQueueFactory.getExcelQueue(factoryInstance.createQueue(),
-				SignalFactory.getSignalInstance());
+		ExcelQueue queue = QueueFactory.getExcelQueue(factoryInstance.createQueue(), SignalFactory.getSignalInstance());
 		factoryInstance.addExcelQueue(queue);
 		org.app.mom.service.ExcelService excelService = new org.app.mom.service.ExcelService();
 		excelService.setCryptography(CryptoFactory.getInstance());

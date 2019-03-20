@@ -6,7 +6,7 @@ package org.app.mom.contracts.activity;
  * @author Anish Singh
  *
  */
-public interface HourlyActivity {
+public interface HourlyActivity extends Activity{
 
 	/**
 	 * Returns activity hours.

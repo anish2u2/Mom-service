@@ -1,7 +1,6 @@
 package org.app.mom.contracts.excel;
 
 import java.util.List;
-import java.util.Map;
 
 import org.app.mom.contracts.file.FileProperty;
 
@@ -26,19 +25,5 @@ public interface ExcelProperties extends FileProperty {
 	 * @return
 	 */
 	public List<String> getTabNames();
-
-	/**
-	 * THis method will set the properties of excel other than tab name.
-	 * 
-	 * @param props
-	 */
-	public void setExcelProperties(Map<String, Object> props);
-
-	/**
-	 * THis method will return properties other than tabs name.
-	 * 
-	 * @return
-	 */
-	public Map<String, Object> getExcelProperties();
 
 }

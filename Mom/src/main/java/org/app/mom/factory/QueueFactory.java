@@ -4,7 +4,9 @@ import java.util.Queue;
 
 import org.app.mom.contracts.activity.Activity;
 import org.app.mom.contracts.excel.ExcelQueue;
+import org.app.mom.contracts.text.TextQueue;
 import org.app.mom.imple.excel.ExcelQueueImple;
+import org.app.mom.imple.text.TextQueueImple;
 import org.pattern.design.contracts.signal.Signal;
 
 /**
@@ -13,7 +15,7 @@ import org.pattern.design.contracts.signal.Signal;
  * @author Anish Singh
  *
  */
-public class ExcelQueueFactory {
+public class QueueFactory {
 
 	/**
 	 * This method will return the instance of Excel Queue.
@@ -27,5 +29,12 @@ public class ExcelQueueFactory {
 		excelQueue.setActivityQueue(activityQueue);
 		excelQueue.setIndicator(signal);
 		return excelQueue;
+	}
+
+	public static TextQueue getTextQueue(Queue<Activity> activities, Signal signal) {
+		TextQueueImple queue = new TextQueueImple();
+		queue.setActivityQueue(activities);
+		queue.setIndicator(signal);
+		return queue;
 	}
 }

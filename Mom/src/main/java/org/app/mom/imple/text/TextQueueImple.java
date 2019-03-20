@@ -1,12 +1,13 @@
-package org.app.mom.imple.excel;
+package org.app.mom.imple.text;
 
 import java.util.Queue;
 
 import org.app.mom.contracts.activity.Activity;
-import org.app.mom.contracts.excel.ExcelQueue;
+import org.app.mom.contracts.text.TextQueue;
+import org.app.mom.factory.ActivityFactory;
 import org.pattern.design.contracts.signal.Signal;
 
-public class ExcelQueueImple implements ExcelQueue {
+public class TextQueueImple implements TextQueue {
 
 	private Queue<Activity> activityQueue;
 
@@ -39,8 +40,8 @@ public class ExcelQueueImple implements ExcelQueue {
 	}
 
 	@Override
-	public  void push(Object activity) {
-		this.activityQueue.add((Activity)activity);
+	public void push(Object activity) {
+		this.activityQueue.add(ActivityFactory.instantiateActivity(activity.toString()));
 	}
 
 	@Override
