@@ -3,13 +3,15 @@ package org.app.mom.contracts.excel;
 import java.util.List;
 import java.util.Map;
 
+import org.app.mom.contracts.file.FileProperty;
+
 /**
  * This interface allows method to get set excel properties.
  * 
  * @author Anish Singh
  *
  */
-public interface ExcelProperties {
+public interface ExcelProperties extends FileProperty {
 
 	/**
 	 * This method will set the tab list.

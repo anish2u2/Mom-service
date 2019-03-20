@@ -1,7 +1,7 @@
 package org.app.mom.contracts.service;
 
-import org.app.mom.contracts.excel.ExcelProperties;
 import org.app.mom.contracts.excel.ExcelQueue;
+import org.app.mom.contracts.file.FileProperty;
 
 /**
  * This interface allows service methods.
@@ -26,5 +26,5 @@ public interface ExcelService {
 	 * @param excelProperties
 	 * @param file
 	 */
-	public void saveActivities(ExcelQueue activityQueue, ExcelProperties excelProperties, String file);
+	public void saveActivities(ExcelQueue activityQueue, FileProperty fileProperty, String file);
 }

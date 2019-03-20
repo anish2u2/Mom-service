@@ -1,5 +1,8 @@
 package org.app.mom.abstracts.services;
 
+import java.util.logging.Logger;
+
+import org.app.mom.contracts.cryptography.Cryptography;
 import org.app.mom.contracts.excel.ExcelProperties;
 import org.app.mom.contracts.excel.ExcelQueue;
 import org.app.mom.contracts.service.ExcelService;
@@ -7,6 +10,10 @@ import org.app.mom.contracts.service.ExcelService;
 public abstract class AbstractExcelService implements ExcelService {
 
 	private ExcelQueue excelQueue;
+
+	private Cryptography cryptography;
+
+	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
 	@Override
 	public void saveActivities(ExcelQueue activityQueue, ExcelProperties excelProperties, String file) {
@@ -29,6 +36,14 @@ public abstract class AbstractExcelService implements ExcelService {
 
 	protected ExcelQueue getExcelQueue() {
 		return this.excelQueue;
+	}
+
+	public void setCryptography(Cryptography cryptography) {
+		this.cryptography = cryptography;
+	}
+
+	protected Cryptography getCryptoObject() {
+		return cryptography;
 	}
 
 }

@@ -1,6 +1,7 @@
 package org.app.mom.contracts.excel;
 
 import org.app.mom.contracts.activity.Activity;
+import org.app.mom.contracts.structure.Queue;
 import org.workers.contracts.Destroy;
 
 /**
@@ -10,7 +11,7 @@ import org.workers.contracts.Destroy;
  * @author Anish Singh
  *
  */
-public interface ExcelQueue extends Destroy {
+public interface ExcelQueue extends Queue, Destroy {
 
 	/**
 	 * This method will return the first activity from the queue.

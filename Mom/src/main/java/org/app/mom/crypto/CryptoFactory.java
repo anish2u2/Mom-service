@@ -27,6 +27,24 @@ public class CryptoFactory implements Cryptography {
 
 	private Key key;
 
+	private static Cryptography crypto;
+
+	private CryptoFactory() {
+
+	}
+
+	/**
+	 * It will return a instance of Cryptography object.
+	 * 
+	 * @return
+	 */
+	public static Cryptography getInstance() {
+		if (crypto == null) {
+			crypto = new CryptoFactory();
+		}
+		return crypto;
+	}
+
 	@Override
 	public void init() {
 		try {
@@ -65,7 +83,7 @@ public class CryptoFactory implements Cryptography {
 		encryptor = null;
 		decryptor = null;
 		key = null;
-
+		crypto = null;
 	}
 
 }

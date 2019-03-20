@@ -7,7 +7,8 @@ import java.util.Queue;
 import org.app.mom.contracts.activity.Activity;
 import org.app.mom.contracts.excel.ExcelQueue;
 import org.app.mom.contracts.service.ExcelService;
-import org.pattern.design.impl.siganl.SignalFactory;
+import org.app.mom.crypto.CryptoFactory;
+import org.pattern.design.impl.signal.SignalFactory;
 
 /**
  * This factory class create a service instance for handling service request.
@@ -25,6 +26,12 @@ public class ExcelServiceFactory {
 		listOfExcelQueue = new LinkedList<ExcelQueue>();
 	}
 
+	/**
+	 * This method will return the instance of ExcelService and it will add all the
+	 * necessary behaviour.
+	 * 
+	 * @return
+	 */
 	public static ExcelService getSrevice() {
 		if (factoryInstance == null) {
 			factoryInstance = new ExcelServiceFactory();
@@ -33,6 +40,7 @@ public class ExcelServiceFactory {
 				SignalFactory.getSignalInstance());
 		factoryInstance.addExcelQueue(queue);
 		org.app.mom.service.ExcelService excelService = new org.app.mom.service.ExcelService();
+		excelService.setCryptography(CryptoFactory.getInstance());
 		excelService.setExcelQueue(queue);
 		return excelService;
 	}
