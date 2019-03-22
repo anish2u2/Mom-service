@@ -41,4 +41,11 @@ public interface Queue {
 	 */
 	public void closeQueue();
 
+	/**
+	 * Returns true if the queue is empty.
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty();
+
 }

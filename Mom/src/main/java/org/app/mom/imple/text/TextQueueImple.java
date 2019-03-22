@@ -5,6 +5,7 @@ import java.util.Queue;
 import org.app.mom.contracts.activity.Activity;
 import org.app.mom.contracts.text.TextQueue;
 import org.app.mom.factory.ActivityFactory;
+import org.app.mom.factory.ApplicationContextBeanFactory;
 import org.pattern.design.contracts.signal.Signal;
 
 public class TextQueueImple implements TextQueue {
@@ -12,6 +13,9 @@ public class TextQueueImple implements TextQueue {
 	private Queue<Activity> activityQueue;
 
 	private Signal indicator;
+
+	private ActivityFactory activityFactory = (ActivityFactory) ApplicationContextBeanFactory.getInstance()
+			.getBean(ActivityFactory.class);
 
 	@Override
 	public Activity poll() {
@@ -22,7 +26,7 @@ public class TextQueueImple implements TextQueue {
 	@Override
 	public boolean isQueueClosed() {
 
-		return indicator.getSignal();
+		return !indicator.getSignal();
 	}
 
 	public void setActivityQueue(Queue<Activity> activitQueue) {
@@ -41,7 +45,7 @@ public class TextQueueImple implements TextQueue {
 
 	@Override
 	public void push(Object activity) {
-		this.activityQueue.add(ActivityFactory.instantiateActivity(activity.toString()));
+		this.activityQueue.add(activityFactory.instantiateActivity(activity.toString()));
 	}
 
 	@Override
@@ -52,5 +56,10 @@ public class TextQueueImple implements TextQueue {
 	@Override
 	public void closeQueue() {
 		indicator.off();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return activityQueue.isEmpty();
 	}
 }

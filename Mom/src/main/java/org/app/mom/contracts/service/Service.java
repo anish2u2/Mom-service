@@ -1,7 +1,7 @@
 package org.app.mom.contracts.service;
 
-import org.app.mom.contracts.excel.ExcelQueue;
 import org.app.mom.contracts.file.FileProperty;
+import org.app.mom.contracts.structure.Queue;
 
 /**
  * This interface allows service methods.
@@ -9,7 +9,7 @@ import org.app.mom.contracts.file.FileProperty;
  * @author Anish Singh
  *
  */
-public interface ExcelService {
+public interface Service {
 
 	/**
 	 * This method will return
@@ -17,14 +17,14 @@ public interface ExcelService {
 	 * @param file
 	 * @return
 	 */
-	public ExcelQueue readActivity(String file);
+	public Queue readActivity(String file);
 
 	/**
 	 * This method will save the activity data into the file.
 	 * 
 	 * @param activityQueue
-	 * @param excelProperties
+	 * @param fileProperties
 	 * @param file
 	 */
-	public void saveActivities(ExcelQueue activityQueue, FileProperty fileProperty, String file);
+	public void saveActivities(Queue activityQueue, FileProperty fileProperty, String file);
 }

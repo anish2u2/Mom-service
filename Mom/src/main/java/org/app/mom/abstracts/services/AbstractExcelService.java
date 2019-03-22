@@ -2,49 +2,23 @@ package org.app.mom.abstracts.services;
 
 import java.util.logging.Logger;
 
-import org.app.mom.contracts.cryptography.Cryptography;
-import org.app.mom.contracts.excel.ExcelProperties;
-import org.app.mom.contracts.excel.ExcelQueue;
 import org.app.mom.contracts.file.FileProperty;
-import org.app.mom.contracts.service.ExcelService;
+import org.app.mom.contracts.service.FileService;
+import org.app.mom.contracts.service.Service;
+import org.app.mom.contracts.structure.Queue;
 
-public abstract class AbstractExcelService implements ExcelService {
+public abstract class AbstractExcelService implements Service {
 
-	private ExcelQueue excelQueue;
-
-	private Cryptography cryptography;
+	private FileService<Queue, FileProperty> fileService;
 
 	protected Logger logger = Logger.getLogger(this.getClass().getName());
 
-	@Override
-	public void saveActivities(ExcelQueue activityQueue, FileProperty excelProperties, String file) {
-		this.excelQueue = activityQueue;
-		saveActivity((ExcelProperties) excelProperties, file);
-
+	public FileService<Queue, FileProperty> getFileService() {
+		return fileService;
 	}
 
-	/**
-	 * This method allow subclass to give specialized method implementation.
-	 * 
-	 * @param excelProperties
-	 * @param file
-	 */
-	protected abstract void saveActivity(ExcelProperties excelProperties, String file);
-
-	public void setExcelQueue(ExcelQueue excelQueue) {
-		this.excelQueue = excelQueue;
-	}
-
-	protected ExcelQueue getExcelQueue() {
-		return this.excelQueue;
-	}
-
-	public void setCryptography(Cryptography cryptography) {
-		this.cryptography = cryptography;
-	}
-
-	protected Cryptography getCryptoObject() {
-		return cryptography;
+	public void setFileService(FileService<Queue, FileProperty> fileService) {
+		this.fileService = fileService;
 	}
 
 }

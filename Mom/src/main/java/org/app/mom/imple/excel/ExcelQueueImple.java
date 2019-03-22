@@ -39,8 +39,8 @@ public class ExcelQueueImple implements ExcelQueue {
 	}
 
 	@Override
-	public  void push(Object activity) {
-		this.activityQueue.add((Activity)activity);
+	public void push(Object activity) {
+		this.activityQueue.add((Activity) activity);
 	}
 
 	@Override
@@ -51,5 +51,10 @@ public class ExcelQueueImple implements ExcelQueue {
 	@Override
 	public void closeQueue() {
 		indicator.off();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return activityQueue.isEmpty();
 	}
 }

@@ -2,6 +2,9 @@ package org.app.mom.factory;
 
 import org.app.mom.contracts.activity.Activity;
 import org.app.mom.contracts.activity.HourlyActivity;
+import org.app.mom.props.TextFilePropertyConstant;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * This class will be used as a activity factory to instantiate activity data.
@@ -9,7 +12,11 @@ import org.app.mom.contracts.activity.HourlyActivity;
  * @author Anish Singh
  *
  */
+@Component
 public class ActivityFactory {
+
+	@Autowired
+	private TextFilePropertyConstant textFileConstant;
 
 	/**
 	 * This method will work on the data and determine the type of activity.
@@ -17,33 +24,36 @@ public class ActivityFactory {
 	 * @param data
 	 * @return
 	 */
-	public static Activity instantiateActivity(String data) {
+	public Activity instantiateActivity(String data) {
+		System.out.println(data);
 		String[] activityData = data.split(";");
-		if (activityData[0].contains("Activity")) {
+		if (activityData[0].contains(textFileConstant.getActivityHeader())) {
 			String[] activityType = activityData[0].split(":");
-			if ("Hourly".equals(activityType[1].trim())) {
+			System.out.println(activityType[1]);
+			if (textFileConstant.getHourlyHeader().equals(activityType[1].trim())) {
 				return getHourlyActivity(activityData);
 			}
 		}
 		return null;
 	}
 
-	private static Activity getHourlyActivity(String[] activityData) {
+	private Activity getHourlyActivity(String[] activityData) {
 
 		HourlyActivity activity = getHourlyActivityInstance();
 
 		for (String data : activityData) {
 			String value = data.split(":")[1].trim();
-			if (data.startsWith("Duration")) {
+			System.out.println(value);
+			if (data.startsWith(textFileConstant.getDurationHeader())) {
 				activity.setActivityHours(Double.valueOf(value));
-			} else if (data.startsWith("Value")) {
+			} else if (data.startsWith(textFileConstant.getValueHeader())) {
 				activity.setActivity(value);
 			}
 		}
 		return activity;
 	}
 
-	public static HourlyActivity getHourlyActivityInstance() {
+	public HourlyActivity getHourlyActivityInstance() {
 		return new HourlyActivity() {
 			private Double hour;
 			private String activity;
